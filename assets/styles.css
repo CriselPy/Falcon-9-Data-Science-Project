@@ -1,146 +1,140 @@
 /* Estilos generales */
-body, html {
-    font-family: Arial, sans-serif;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
-    height: 100%;
 }
 
 #main-container {
     padding: 20px;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: background-color 0.3s ease-in-out;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-h1 {
-    text-align: center;
-    font-size: 36px;
-    color: #333;
+/* Modo diurno */
+.day-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.day-mode .fas.fa-sun {
+    color: #f39c12;
+}
+
+.day-mode .fas.fa-moon {
+    color: #3498db;
+}
+
+/* Modo nocturno */
+.night-mode {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.night-mode .fas.fa-sun {
+    color: #f39c12;
+}
+
+.night-mode .fas.fa-moon {
+    color: #3498db;
+}
+
+/* Contenedores */
+.dropdown-container, .slider-container {
     margin-bottom: 20px;
 }
 
-/* Estilo del contenedor para el modo día */
-.day-mode {
-    background-color: #ffffff; /* Fondo blanco */
-    color: #333333; /* Texto oscuro */
+.fas {
+    font-size: 24px;
+    cursor: pointer;
 }
 
-/* Estilo del contenedor para el modo noche */
-.night-mode {
-    background-color: #2c3e50; /* Fondo oscuro */
-    color: #ecf0f1; /* Texto claro */
-}
-
-/* Estilos para el botón de alternar modo */
+/* Botón de alternancia de modo */
 #toggle-button {
+    background: none;
+    border: none;
+    outline: none;
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 36px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    z-index: 10;
-    transition: transform 0.3s ease;
 }
 
-#toggle-button:hover {
-    transform: scale(1.1); /* Agrandar ícono al pasar el cursor */
+/* Estilos para los gráficos */
+.dccGraph {
+    margin-bottom: 20px;
 }
 
-/* Estilo de los íconos */
-#toggle-button i {
-    color: #f39c12; /* Color del sol (brillante) */
-}
-
-#toggle-button.night-mode i {
-    color: #ecf0f1; /* Color del ícono de luna (claro) */
-}
-
-/* Estilos para el contenedor de los controles (Dropdown y Slider) */
-.dropdown-container,
-.slider-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 10px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-}
-
-.day-mode .dropdown-container,
-.day-mode .slider-container {
-    background-color: #ffffff; /* Fondo blanco en el modo día */
-}
-
-.night-mode .dropdown-container,
-.night-mode .slider-container {
-    background-color: #444; /* Fondo oscuro en el modo noche */
-}
-
-/* Estilo para los gráficos */
-#success-pie-chart,
-#success-payload-scatter-chart {
-    width: 100%;
-    height: 400px;
-    margin-top: 20px;
-}
-
-/* Estilo del mapa */
+/* Estilos para el mapa */
 #launch-map {
-    width: 100%;
-    height: 600px;
-    margin-top: 20px;
     border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Modo Día: Botón y estilos adicionales */
-.day-mode #toggle-button .fa-sun {
-    display: inline-block; /* Mostrar sol en el modo día */
+/* Estilos para el título */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: inherit;
 }
 
-.day-mode #toggle-button .fa-moon {
-    display: none; /* Ocultar luna en el modo día */
+/* Estilos para los controles */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
 }
 
-/* Modo Noche: Botón y estilos adicionales */
-.night-mode #toggle-button .fa-moon {
-    display: inline-block; /* Mostrar luna en el modo noche */
+.dropdown-container, .slider-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.night-mode #toggle-button .fa-sun {
-    display: none; /* Ocultar sol en el modo noche */
+/* Estilos para el contenedor principal */
+html, body {
+    height: 100%;
 }
 
-/* Modo Día */
-.day-mode {
-    background-color: #ffffff; /* Fondo blanco */
-    color: #333333; /* Texto oscuro */
+#main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.day-mode #toggle-button .fa-sun {
-    color: #f39c12; /* Color amarillo brillante para el sol */
+/* Estilos para el botón de alternancia */
+#toggle-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 1000;
 }
 
-.day-mode #toggle-button .fa-moon {
-    display: none; /* Ocultar luna en el modo día */
+/* Estilos para el contenedor de gráficos y mapa */
+.graph-container, .map-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Modo Noche */
-.night-mode {
-    background-color: #2c3e50; /* Fondo oscuro */
-    color: #ecf0f1; /* Texto claro */
-}
-
-.night-mode #toggle-button .fa-moon {
-    color: #34495e; /* Color oscuro para la luna */
-}
-
-.night-mode #toggle-button .fa-sun {
-    display: none; /* Ocultar sol en el modo noche */
+.night-mode .graph-container, .night-mode .map-container {
+    background-color: #34495e;
+    color: #ecf0f1;
 }
