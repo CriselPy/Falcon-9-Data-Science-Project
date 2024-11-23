@@ -1,145 +1,220 @@
-# Importar las bibliotecas necesarias
 import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
-import plotly.express as px
+from dash import dcc, html, Input, Output
 import pandas as pd
+import plotly.express as px
 import folium
 from folium.plugins import MarkerCluster
+from folium.features import DivIcon
+from math import sin, cos, sqrt, atan2, radians
+import os
 
-# Leer los datos del archivo CSV
+# Load the SpaceX dataset
 spacex_df = pd.read_csv('spacex_launch_geo.csv')
+launch_sites_df = spacex_df[['Launch Site', 'Lat', 'Long']].drop_duplicates()
 
-# Crear la aplicación Dash
-app = dash.Dash(
-    __name__,
-    external_stylesheets=['/assets/styles.css'],  # Ahora usamos la hoja de estilo externa
-    external_scripts=[
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js'  # Iconos Font Awesome
-    ],
-    suppress_callback_exceptions=True  # Permitir que las excepciones en callbacks se ignoren mientras se carga
-)
+# Initialize the Dash app
+app = dash.Dash(__name__)
+app.title = "SpaceX Launch Dashboard"
 
-
-# Definir las opciones del dropdown (menú desplegable) para los sitios de lanzamiento
-launch_sites = spacex_df['Launch Site'].unique()
-
-# Definir el diseño de la aplicación (layout)
-app.layout = html.Div(id='main-container', className='day-mode', children=[  # Definir clase por defecto como 'day-mode'
-    # Título principal
-    html.H1("Analítica de Lanzamientos de SpaceX", style={'text-align': 'center'}),
-
-    # Botón para cambiar entre modo noche/día con un icono
-    html.Div([
-        html.Button(
-            html.I(className="fas fa-sun"),  # Icono de sol por defecto
-            id='toggle-button', n_clicks=0,
-        ),
-    ], style={'position': 'relative', 'z-index': 1}),
-
-    # Panel de controles (Dropdown y Slider)
-    html.Div([
-        # Dropdown para seleccionar el sitio de lanzamiento
-        html.Div([
-            html.Label('Seleccionar Sitio de Lanzamiento', style={'font-size': '16px', 'font-weight': 'bold', 'margin-bottom': '5px'}),
-            dcc.Dropdown(
-                id='launch-site-dropdown',
-                options=[{'label': site, 'value': site} for site in launch_sites],
-                value=launch_sites[0],
+# Layout for the app
+app.layout = html.Div([
+    # Portada con video
+    html.Div(
+        id='cover-section',
+        style={
+            'position': 'relative',
+            'width': '100%',  # Asegura que ocupe todo el ancho
+            'height': '70vh',  # Asegura que ocupe todo el alto de la pantalla
+            'overflow': 'hidden',  # Oculta cualquier contenido que se desborde
+        },
+        children=[
+            html.Video(
+                id='video-background',
+                src='/assets/blackhole.mp4',  # Asegúrate de que el video esté en la carpeta /assets
+                autoPlay=True,
+                loop=True,
+                muted=True,
+                controls=False,
+                style={
+                    'position': 'absolute',  # Hace que el video se posicione de manera absoluta
+                    'top': '0',
+                    'left': '0',
+                    'width': '100%',
+                    'height': '100%',
+                    'objectFit': 'cover'  # Asegura que el video cubra todo el área
+                }
+            ),
+            html.Div(
+                className="cover-content",
+                style={
+                    'position': 'absolute',
+                    'top': '50%',  # Centra verticalmente
+                    'left': '50%',  # Centra horizontalmente
+                    'transform': 'translate(-50%, -50%)',  # Ajusta la posición para centrar
+                    'color': 'white',  # Asegura que el texto sea visible sobre el video
+                    'textAlign': 'center',
+                    'zIndex': 10  # Asegura que el contenido se muestre por encima del video
+                },
+                children=[
+                    html.H1("SpaceX Launch Records Dashboard", style={'fontSize': '3rem'}),
+                    html.P("Explore SpaceX Launch Data and Statistics", style={'fontSize': '1.5rem'})
+                ]
             )
-        ], className='dropdown-container'),
+        ]
+    ),
+    # Contenedor del dashboard con los gráficos y controles
+    html.Div(
+        className="dashboard-container",
+        children=[
+            # Dropdown para seleccionar sitios de lanzamiento
+            dcc.Dropdown(
+                id='site-dropdown',
+                options=[{'label': site, 'value': site} for site in spacex_df['Launch Site'].unique()] +
+                        [{'label': 'All Sites', 'value': 'ALL'}],
+                value='ALL',
+                placeholder='Select a Launch Site',
+                searchable=True
+            ),
+            html.Br(),
 
-        # Slider para seleccionar el rango de masa de la carga útil
-        html.Div([
-            html.Label('Seleccionar Rango de Masa de Carga Útil', style={'font-size': '16px', 'font-weight': 'bold', 'margin-bottom': '5px'}),
+            # Gráfico de pie
+            html.Div(dcc.Graph(id='success-pie-chart')),
+            html.Br(),
+
+            # Slider para el rango de payload
+            html.P("Payload range (kg):"),
             dcc.RangeSlider(
                 id='payload-slider',
                 min=spacex_df['Payload Mass (kg)'].min(),
                 max=spacex_df['Payload Mass (kg)'].max(),
-                step=500,
-                marks={i: str(i) for i in range(
-                    int(spacex_df['Payload Mass (kg)'].min()),
-                    int(spacex_df['Payload Mass (kg)'].max()) + 1, 500
-                )},
-                value=[spacex_df['Payload Mass (kg)'].min(), spacex_df['Payload Mass (kg)'].max()],
-                tooltip={"placement": "bottom", "always_visible": True}
-            )
-        ], className='slider-container'),
-    ], style={
-        'display': 'flex',
-        'flex-direction': 'column',
-        'align-items': 'center',
-        'padding': '20px',
-        'gap': '20px'
-    }),
+                step=100,
+                marks={i: f'{i} kg' for i in range(0, int(spacex_df['Payload Mass (kg)'].max()), 1000)},
+                value=[spacex_df['Payload Mass (kg)'].min(), spacex_df['Payload Mass (kg)'].max()]
+            ),
+            html.Br(),
 
-    # Contenedor para los gráficos y el mapa
-    html.Div([
-        html.Div([dcc.Graph(id='success-pie-chart')], style={'width': '100%', 'height': '400px'}),
-        html.Div([dcc.Graph(id='success-payload-scatter-chart')], style={'width': '100%', 'height': '400px'}),
-        html.Div([html.Iframe(id='launch-map', srcDoc=None, width='100%', height='600px')], style={'width': '100%', 'height': '600px'})
-    ], style={'display': 'flex', 'flexDirection': 'column', 'gap': '10px'}),
+            # Gráfico de dispersión
+            html.Div(dcc.Graph(id='success-payload-scatter-chart')),
+            html.Br(),
+
+            # Mapa de Folium
+            html.Div(id='map', style={'height': '600px', 'width': '100%'})
+        ]
+    )
 ])
 
-# Callback para actualizar el gráfico circular basado en el sitio de lanzamiento seleccionado
+
+# Callback para actualizar el gráfico de pie
 @app.callback(
     Output('success-pie-chart', 'figure'),
-    [Input('launch-site-dropdown', 'value')]
+    [Input('site-dropdown', 'value')]
 )
-def update_pie_chart(launch_site):
-    filtered_data = spacex_df[spacex_df['Launch Site'] == launch_site]
-    success_counts = filtered_data['class'].value_counts()
-    fig = px.pie(values=success_counts, names=success_counts.index, title=f'Tasa de Éxito en {launch_site}')
+def update_pie_chart(selected_site):
+    if selected_site == 'ALL':
+        fig = px.pie(
+            spacex_df,
+            values='class',
+            names='Launch Site',
+            title='Total Success Launches by Site'
+        )
+    else:
+        filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
+        fig = px.pie(
+            filtered_df,
+            names='class',
+            title=f'Total Success Launches for site {selected_site}'
+        )
     return fig
 
-# Callback para actualizar el gráfico de dispersión según el rango de carga útil
+
+# Callback para actualizar el gráfico de dispersión
 @app.callback(
     Output('success-payload-scatter-chart', 'figure'),
-    [Input('payload-slider', 'value')]
+    [Input('site-dropdown', 'value'),
+     Input('payload-slider', 'value')]
 )
-def update_scatter(payload_range):
-    min_payload, max_payload = payload_range
-    filtered_data = spacex_df[(spacex_df['Payload Mass (kg)'] >= min_payload) & (spacex_df['Payload Mass (kg)'] <= max_payload)]
-    fig = px.scatter(filtered_data, x='Payload Mass (kg)', y='class', color='Launch Site',
-                     labels={'Payload Mass (kg)': 'Masa de Carga (kg)', 'class': 'Éxito de Lanzamiento'},
-                     title=f'Éxito vs Masa de Carga')
+def update_scatter_chart(selected_site, payload_range):
+    filtered_df = spacex_df[
+        (spacex_df['Payload Mass (kg)'] >= payload_range[0]) &
+        (spacex_df['Payload Mass (kg)'] <= payload_range[1])
+    ]
+
+    if selected_site != 'ALL':
+        filtered_df = filtered_df[filtered_df['Launch Site'] == selected_site]
+
+    fig = px.scatter(
+        filtered_df,
+        x='Payload Mass (kg)',
+        y='class',
+        color='Orbit',
+        title='Payload vs. Outcome for All Sites' if selected_site == 'ALL' else f'Payload vs. Outcome for {selected_site}',
+        labels={'class': 'Launch Success'}
+    )
     return fig
 
-# Callback para alternar entre modo día y noche con íconos diferentes
+
+# Función para calcular la distancia entre dos puntos
+def calculate_distance(lat1, lon1, lat2, lon2):
+    R = 6373.0  # Radio aproximado de la Tierra en km
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distance = R * c
+    return distance
+
+
+# Callback para actualizar el mapa de Folium
 @app.callback(
-    [Output('toggle-button', 'children'),
-     Output('main-container', 'className')],
-    [Input('toggle-button', 'n_clicks')]
+    Output('map', 'children'),
+    [Input('site-dropdown', 'value')]
 )
-def toggle_day_night(n_clicks):
-    if n_clicks % 2 == 0:
-        # Usar ícono de sol con tamaño grande para el día
-        return html.I(className="fas fa-sun fa-5x"), 'day-mode'
+def update_map(selected_site):
+    # Mapa base
+    if selected_site == 'ALL':
+        center = [29.559684, -95.083097]
     else:
-        # Usar ícono de luna con tamaño grande para la noche
-        return html.I(className="fas fa-moon fa-5x"), 'night-mode'
+        site_data = launch_sites_df[launch_sites_df['Launch Site'] == selected_site]
+        center = [site_data['Lat'].iloc[0], site_data['Long'].iloc[0]]
 
-# Callback para actualizar el mapa Folium basado en el sitio seleccionado
-@app.callback(
-    Output('launch-map', 'srcDoc'),
-    [Input('launch-site-dropdown', 'value')]
-)
-def update_map(launch_site):
-    site_data = spacex_df[spacex_df['Launch Site'] == launch_site]
-    m = folium.Map(location=[site_data['Lat'].mean(), site_data['Long'].mean()], zoom_start=7)
-    marker_cluster = MarkerCluster().add_to(m)
+    folium_map = folium.Map(location=center, zoom_start=10)
+    marker_cluster = MarkerCluster().add_to(folium_map)
 
-    for _, row in site_data.iterrows():
-        folium.Marker(
+    # Añadir marcadores
+    for _, row in spacex_df.iterrows():
+        marker = folium.Marker(
             location=[row['Lat'], row['Long']],
-            popup=f"{row['Launch Site']}<br>Éxito: {'Sí' if row['class'] == 1 else 'No'}",
-            icon=folium.Icon(color='green' if row['class'] == 1 else 'red')
-        ).add_to(marker_cluster)
+            icon=folium.Icon(color='green' if row['class'] == 1 else 'red'),
+            popup=f"Payload: {row['Payload']}<br>Orbit: {row['Orbit']}<br>Success: {row['class']}"
+        )
+        marker_cluster.add_child(marker)
 
-    return m._repr_html_()
+    if selected_site != 'ALL':
+        site_data = launch_sites_df[launch_sites_df['Launch Site'] == selected_site]
+        launch_lat, launch_lon = site_data['Lat'].iloc[0], site_data['Long'].iloc[0]
 
-# Ejecutar la aplicación
+        # Añadir distancias
+        points_of_interest = [
+            {'name': 'Coastline', 'lat': 28.56367, 'lon': -80.56772},
+            {'name': 'Highway', 'lat': 28.56357, 'lon': -80.57081},
+            {'name': 'City', 'lat': 28.07923, 'lon': -80.6051},
+            {'name': 'Railway', 'lat': 28.57221, 'lon': -80.58528},
+        ]
+
+        for point in points_of_interest:
+            distance = calculate_distance(launch_lat, launch_lon, point['lat'], point['lon'])
+            marker = folium.Marker(
+                location=[point['lat'], point['lon']],
+                popup=f"{point['name']} - {distance:.2f} KM",
+                icon=folium.Icon(color='blue', icon='info-sign')
+            )
+            folium_map.add_child(marker)
+            folium.PolyLine([[launch_lat, launch_lon], [point['lat'], point['lon']]], color='blue').add_to(folium_map)
+
+    return html.Iframe(srcDoc=folium_map._repr_html_(), width='100%', height='600')
+
+
+# Ejecutar la app
 if __name__ == '__main__':
-    app.run_server(host='0.0.0.0', port=8050)
-
-
+    app.run_server(debug=True)

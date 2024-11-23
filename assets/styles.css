@@ -1,140 +1,38 @@
-/* Estilos generales */
+/* styles.css */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
-    padding: 0;
 }
 
-#main-container {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, color 0.3s;
-}
-
-/* Modo diurno */
-.day-mode {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-.day-mode .fas.fa-sun {
-    color: #f39c12;
-}
-
-.day-mode .fas.fa-moon {
-    color: #3498db;
-}
-
-/* Modo nocturno */
-.night-mode {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-}
-
-.night-mode .fas.fa-sun {
-    color: #f39c12;
-}
-
-.night-mode .fas.fa-moon {
-    color: #3498db;
-}
-
-/* Contenedores */
-.dropdown-container, .slider-container {
-    margin-bottom: 20px;
-}
-
-.fas {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Botón de alternancia de modo */
-#toggle-button {
-    background: none;
-    border: none;
-    outline: none;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-/* Estilos para los gráficos */
-.dccGraph {
-    margin-bottom: 20px;
-}
-
-/* Estilos para el mapa */
-#launch-map {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos para el título */
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    color: inherit;
-}
-
-/* Estilos para los controles */
-label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.dropdown-container, .slider-container {
+#cover-section {
+    position: relative;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Estilos para el contenedor principal */
-html, body {
-    height: 100%;
-}
-
-#main-container {
+    height: 100vh;  /* El video y el contenido de portada ocuparán toda la altura de la pantalla */
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fondo oscuro para mejor visibilidad del texto */
 }
 
-/* Estilos para el botón de alternancia */
-#toggle-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 1000;
+#video-background {
+    width: 100%; /* El video ocupa el 100% del ancho */
+    height: auto; /* Mantiene la proporción original del video */
 }
 
-/* Estilos para el contenedor de gráficos y mapa */
-.graph-container, .map-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
+.cover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 20px;
-    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.night-mode .graph-container, .night-mode .map-container {
-    background-color: #34495e;
-    color: #ecf0f1;
+.dashboard-container {
+    margin-top: 50px;
 }
