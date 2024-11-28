@@ -1,20 +1,28 @@
+/* ==============================
+   ESTILO GENERAL
+   ============================== */
+
 /* Estilo general del cuerpo */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1b1919;
-    margin: 0;
-    overflow-x: hidden;
+    font-family: Arial, sans-serif; /* Fuente general */
+    background-color: #1b1919; /* Fondo oscuro */
+    margin: 0; /* Eliminar márgenes */
+    overflow-x: hidden; /* Evitar desplazamiento horizontal */
 }
+
+/* ==============================
+   SECCIÓN PRINCIPAL (CUBIERTA)
+   ============================== */
 
 /* Sección principal que cubre toda la pantalla */
 #cover-section {
     position: relative;
     width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 70vh; /* Altura del 70% del viewport */
+    display: flex; /* Alinear elementos hijos */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    overflow: hidden; /* Ocultar contenido que se desborda */
 }
 
 /* Estilo para el video de fondo */
@@ -24,184 +32,144 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Ajustar el video sin distorsión */
 }
 
-/* Contenido central sobre el fondo, con texto */
+/* Contenido central sobre el fondo */
 .cover-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    font-size: 3rem;
-    z-index: 10;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 30px;
+    transform: translate(-50%, -50%); /* Centrar */
+    text-align: center; /* Centrar texto */
+    color: white; /* Texto blanco */
+    font-size: 3rem; /* Tamaño de fuente grande */
+    z-index: 10; /* Por encima del video */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+}
+/* ==============================
+   ESTILOS DE SELECTOR (Dropdown)
+   ============================== */
+
+/* Contenedor del selector */
+.selector-container {
+    position: relative !important; /* Priorizar posición */
+    z-index: 9999 !important; /* Por encima de otros elementos */
 }
 
-/* Contenedor de los controles, como sliders y dropdowns */
-#controls-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
+/* Asegurar que el menú desplegable se muestre sobre otros elementos */
+.selector-container .Select-menu-outer {
+    z-index: 10000 !important; /* Nivel superior */
 }
 
-/* Estilo para los controles (dropdowns y sliders) */
-#controls-container .dcc-dropdown, #controls-container .dcc-range-slider {
-    width: 100%;
-    max-width: 350px;
+/* Estilo general del selector */
+.selector-container .Select-control {
+    border: 2px solid #333 !important; /* Borde del selector */
+    border-radius: 8px !important; /* Bordes redondeados */
+    padding: 10px !important; /* Espaciado interno */
+    background-color: #f7f1f1 !important; /* Fondo claro */
+    color: rgb(4, 4, 4) !important; /* Texto negro */
+    box-shadow: none !important; /* Sin sombra por defecto */
+    transition: box-shadow 0.3s ease-in-out !important; /* Animación al enfocar */
 }
 
-/* Estilo para dropdowns */
-.dcc-dropdown {
-    position: relative;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 10px;
-    width: 100%;
-    max-width: 350px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    overflow: visible;
-    z-index: 10;  /* Aumentado para asegurar que se muestre encima */
+
+/* Estilo de opciones al pasar el cursor */
+.selector-container .Select-option:hover {
+    background-color: orange !important; /* Fondo naranja */
+    color: white !important; /* Texto blanco */
+    cursor: pointer !important; /* Indicar interactividad */
 }
 
-/* El menú desplegable del Dropdown también necesita un z-index alto */
-.dcc-dropdown .Select-menu-outer {
-    z-index: 130;  /* Asegura que las opciones del dropdown estén por encima de otros elementos */
+/* Cambiar el color del menú desplegable al pasar el cursor */
+.selector-container .Select-menu-outer:hover {
+    border-color: orange !important; /* Borde naranja */
+    background-color: #fcfbf8 !important; /* Fondo */
 }
 
-/* Cambiar el color cuando el dropdown está en foco o hover */
-.dcc-dropdown:focus, .dcc-dropdown:hover {
-    background-color: rgba(50, 50, 50, 0.9);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-}
 
-/* Estilo para las opciones del dropdown */
-.dcc-dropdown .Select-option:hover {
-    background-color: #d8b815;  /* Cambia a azul cuando el mouse pasa sobre la opción */
-    color: white;  /* Cambia el color del texto cuando el mouse pasa sobre la opción */
-}
+/* ==============================
+   CONTENEDORES DE GRÁFICOS Y MAPAS
+   ============================== */
 
-/* Estilo para las opciones seleccionadas */
-.dcc-dropdown .Select-option--is-selected {
-    background-color: #2ecc71;  /* Un verde brillante cuando la opción es seleccionada */
-    color: white;  /* Cambia el color del texto cuando la opción está seleccionada */
-}
-
-/* Estilo del menú desplegable */
-.dcc-dropdown > div {
-    position: relative;
-    overflow: visible;
-    z-index: 10;
-}
-
-/* Contenedor de gráficos y mapas */
+/* Contenedores para gráficos y mapas */
 .graph-box, .map-box {
-    position: relative;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    z-index: 5;
-    width: 90%;
-    max-width: 1000px;
+    position: relative; /* Posición relativa para efectos */
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente oscuro */
+    padding: 20px; /* Espaciado interno */
+    margin-bottom: 30px; /* Espaciado externo inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animaciones */
+    overflow: hidden; /* Ocultar contenido desbordante */
+    width: 90%; /* Ancho adaptable */
+    max-width: 1000px; /* Ancho máximo */
+    z-index: 1; /* Por debajo de dropdowns */
 }
 
-/* Efecto de hover para las cajas de gráficos y mapas */
+/* Efecto de hover para las cajas */
 .graph-box:hover, .map-box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.8);
-    z-index: 10;
+    transform: scale(1.05); /* Aumentar tamaño */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.8); /* Sombra más intensa */
 }
 
-/* Estilos específicos para la caja de gráficos */
-.graph-box {
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Estilos específicos para la caja del mapa */
+/* Estilos específicos para mapas */
 .map-box {
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 600px; /* Altura fija */
 }
-
-/* Estilo adicional para iframe dentro del mapa */
 .map-box iframe {
-    border: none;
-    border-radius: 15px;
-    width: 100%;
-    height: 100%;
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
 }
 
-/* Estilos para dropdowns y sliders */
-.dcc-dropdown, .dcc-range-slider {
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 10px;
-    width: 100%;
+/* ==============================
+   CAJAS GENÉRICAS
+   ============================== */
+
+/* Estilo general para cajas */
+.box {
+    padding: 15px; /* Espaciado interno */
+    background: rgba(42, 40, 40, 0.915); /* Fondo oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animaciones */
+    max-width: 1250px; /* Ancho máximo */
+    margin: auto; /* Centrar */
 }
 
-.dcc-dropdown .Select-control {
-    border-radius: 10px;
+/* Efecto hover para cajas */
+.box:hover {
+    transform: scale(1.03); /* Aumentar tamaño */
+    box-shadow: 0 6px 10px rgba(241, 157, 39, 0.7); /* Sombra naranja */
 }
 
-.dcc-range-slider .RangeSlider {
-    border-radius: 10px;
-}
-
-/* Estilos para hacer el diseño más responsivo en pantallas pequeñas */
+/* ==============================
+   RESPONSIVIDAD (Pantallas pequeñas)
+   ============================== */
 @media (max-width: 768px) {
     .cover-content {
-        font-size: 2rem;
-        padding: 15px;
+        font-size: 2rem; /* Reducir tamaño de fuente */
+        padding: 15px; /* Ajustar espaciado */
     }
 
     #controls-container .dcc-dropdown, #controls-container .dcc-range-slider {
-        max-width: 90%;
+        max-width: 90%; /* Ajustar ancho máximo */
     }
 
     iframe {
-        height: 400px;
+        height: 400px; /* Reducir altura */
     }
 
     .graph-box, .map-box {
-        transform: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        transform: none; /* Deshabilitar zoom */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Reducir sombra */
     }
 
     .map-box {
-        height: 400px;
+        height: 400px; /* Altura más pequeña */
     }
-}
-
-/* Estilo para cajas genéricas (de texto o contenido) */
-.box {
-    padding: 15px;
-    background: rgba(42, 40, 40, 0.915);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
-    transition: transform 0.3s, box-shadow 0.3s;
-    max-width: 1250px;
-    margin: auto;
-}
-
-/* Efecto de hover para las cajas genéricas */
-.box:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 10px rgba(241, 157, 39, 0.7);
 }

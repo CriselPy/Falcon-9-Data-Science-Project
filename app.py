@@ -4,7 +4,8 @@ import plotly.express as px
 import folium
 from folium.plugins import MarkerCluster
 from math import sin, cos, sqrt, atan2, radians
-import os
+import io
+from folium.features import DivIcon
 
 # Cargar el dataset de SpaceX
 spacex_df = pd.read_csv('spacex_launch_geo.csv')
@@ -70,16 +71,21 @@ app.layout = html.Div([
         children=[
             # Dropdown para seleccionar sitios de lanzamiento
             html.Div(
-                className="selector-container box",
+                className="selector-container",
                 children=[
-                    dcc.Dropdown(
-                        id='site-dropdown',
-                        options=[{'label': site, 'value': site} for site in spacex_df['Launch Site'].unique()] +
-                                 [{'label': 'All Sites', 'value': 'ALL'}],
-                        value='ALL',
-                        placeholder='Select a Launch Site',
-                        searchable=True,
-                        style={'width': '50%'}
+                    html.Div(
+                        className="box",
+                        children=[
+                            dcc.Dropdown(
+                                id='site-dropdown',
+                                options=[{'label': site, 'value': site} for site in spacex_df['Launch Site'].unique()] +
+                                         [{'label': 'All Sites', 'value': 'ALL'}],
+                                value='ALL',
+                                placeholder='Select a Launch Site',
+                                searchable=True,
+                                style={'width': '100%'}
+                            ),
+                        ]
                     ),
                 ]
             ),
@@ -179,20 +185,6 @@ def update_scatter_chart(selected_site, payload_range):
     )
     return fig
 
-# Callback para cambiar el estilo del dropdown
-@app.callback(
-    Output('site-dropdown', 'style'),
-    [Input('site-dropdown', 'value')]
-)
-def update_dropdown_style(selected_value):
-    if selected_value == 'ALL':
-        return {'backgroundColor': 'gray', 'color': 'white', 'border': '2px solid black'}
-    elif selected_value == 'A':
-        return {'backgroundColor': 'green', 'color': 'white', 'border': '2px solid green'}
-    elif selected_value == 'B':
-        return {'backgroundColor': 'blue', 'color': 'white', 'border': '2px solid blue'}
-    else:
-        return {'backgroundColor': 'white', 'color': 'black', 'border': '2px solid gray'}
 
 # Función para calcular la distancia entre dos puntos
 def calculate_distance(lat1, lon1, lat2, lon2):
@@ -211,7 +203,7 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     [Input('site-dropdown', 'value')]
 )
 def update_map(selected_site):
-    # Mapa base
+    # Determinar el centro del mapa dependiendo del sitio seleccionado
     if selected_site == 'ALL':
         center = [29.559684, -95.083097]
     else:
@@ -221,41 +213,61 @@ def update_map(selected_site):
     folium_map = folium.Map(location=center, zoom_start=10)
     marker_cluster = MarkerCluster().add_to(folium_map)
 
-    # Añadir marcadores
+    # Añadir marcadores para cada lanzamiento
     for _, row in spacex_df.iterrows():
-        marker = folium.Marker(
+        folium.Marker(
             location=[row['Lat'], row['Long']],
-            icon=folium.Icon(color='green' if row['class'] == 1 else 'red'),
+            icon=folium.Icon(color='green' if row['class'] == 1 else 'red', icon='rocket', prefix='fa'),
             popup=f"Payload: {row['Payload']}<br>Orbit: {row['Orbit']}<br>Success: {row['class']}"
-        )
-        marker_cluster.add_child(marker)
+        ).add_to(marker_cluster)
 
+    # Si no es 'ALL', añadir los puntos de interés y calcular las distancias
     if selected_site != 'ALL':
         site_data = launch_sites_df[launch_sites_df['Launch Site'] == selected_site]
         launch_lat, launch_lon = site_data['Lat'].iloc[0], site_data['Long'].iloc[0]
 
-        # Añadir distancias
+        # Puntos de interés
         points_of_interest = [
-            {'name': 'Coastline', 'lat': 28.56367, 'long': -80.56772},
-            {'name': 'Highway', 'lat': 28.56357, 'long': -80.57081},
-            {'name': 'City', 'lat': 28.07923, 'long': -80.6051},
-            {'name': 'Railway', 'lat': 28.57221, 'long': -80.58528},
+            {'name': 'Coastline', 'lat': 28.56367, 'long': -80.56772, "color": "cadetblue", "icon": "fa-water"},
+            {'name': 'Highway', 'lat': 28.56357, 'long': -80.57081, "color": "blue", "icon": "fa-road"},
+            {'name': 'City', 'lat': 28.07923, 'long': -80.6051, "color": "red", "icon": "fa-building"},
+            {'name': 'Railway', 'lat': 28.57221, 'long': -80.58528, "color": "purple", "icon": "fa-train"},
         ]
 
+        # Añadir marcadores y las distancias
         for point in points_of_interest:
             distance = calculate_distance(launch_lat, launch_lon, point['lat'], point['long'])
-            marker = folium.Marker(
+            folium.Marker(
                 location=[point['lat'], point['long']],
                 popup=f"{point['name']} - {distance:.2f} KM",
-                icon=folium.Icon(color='blue')
-            )
-            marker.add_to(folium_map)
+                icon=DivIcon(icon_size=(70, 70), html=f'<i class="fa {point["icon"]}" style="font-size: 30px; color:{point["color"]};"></i>')
+            ).add_to(folium_map)
 
-    # Guardar el mapa en la carpeta 'assets'
-    folium_map.save('assets/spacex_map.html')
+        # Añadir marcador para el sitio de lanzamiento (con un cohete)
+        folium.Marker(
+            location=[launch_lat, launch_lon],
+            popup="Launch Site",
+            icon=DivIcon(icon_size=(90, 90), html='<i class="fa fa-rocket" style="font-size: 40px; color: violet;"></i>')
+        ).add_to(folium_map)
 
-    # Retornar el iframe que apunta a la carpeta 'assets'
-    return html.Iframe(src='/assets/spacex_map.html', width='100%', height='600px')
+        # Añadir líneas de distancia
+        for point in points_of_interest:
+            folium.PolyLine(
+                locations=[(launch_lat, launch_lon), (point['lat'], point['long'])],
+                color="red", weight=3, opacity=1
+            ).add_to(folium_map)
+
+    # Generar HTML del mapa en memoria
+    map_html = io.BytesIO()
+    folium_map.save(map_html, close_file=False)
+    map_html.seek(0)
+
+    # Retornar el mapa en un iframe
+    return html.Iframe(
+        srcDoc=map_html.read().decode('utf-8'),
+        width='100%',
+        height='600px'
+    )
 
 
 # Correr el servidor
