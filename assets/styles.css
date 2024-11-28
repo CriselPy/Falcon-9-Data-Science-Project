@@ -49,6 +49,7 @@ body {
     border-radius: 10px; /* Bordes redondeados */
     background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
 }
+
 /* ==============================
    ESTILOS DE SELECTOR (Dropdown)
    ============================== */
@@ -75,20 +76,19 @@ body {
     transition: box-shadow 0.3s ease-in-out !important; /* Animación al enfocar */
 }
 
-
-/* Estilo de opciones al pasar el cursor */
-.selector-container .Select-option:hover {
-    background-color: orange !important; /* Fondo naranja */
-    color: white !important; /* Texto blanco */
-    cursor: pointer !important; /* Indicar interactividad */
-}
-
 /* Cambiar el color del menú desplegable al pasar el cursor */
 .selector-container .Select-menu-outer:hover {
     border-color: orange !important; /* Borde naranja */
     background-color: #fcfbf8 !important; /* Fondo */
 }
 
+/* Estilo para el título del slider */
+.slider-container p {
+    color: white !important; /* Color blanco */
+    font-weight: bold !important; /* Negritas */
+    font-size: 1.5rem !important; /* Tamaño más grande (ajústalo según tu preferencia) */
+    margin-bottom: 10px; /* Espaciado debajo del título */
+}
 
 /* ==============================
    CONTENEDORES DE GRÁFICOS Y MAPAS
@@ -171,5 +171,72 @@ body {
 
     .map-box {
         height: 400px; /* Altura más pequeña */
+    }
+
+    /* Ajustes para RangeSlider en pantallas pequeñas */
+    .slider-container .rc-slider-mark-text {
+        font-size: 8px !important;  /* Reducir tamaño de la fuente */
+        white-space: nowrap !important; /* Prevenir que los números se partan en varias líneas */
+        margin-top: 5px !important; /* Ajustar el espacio entre las marcas y el slider */
+    }
+
+    .slider-container .rc-slider-mark {
+        margin-left: 15px !important; /* Separación horizontal mayor entre marcas */
+        margin-right: 15px !important; /* Separación horizontal mayor entre marcas */
+    }
+
+    .slider-container .rc-slider {
+        margin-bottom: 20px !important; /* Añadir espacio por debajo */
+    }
+
+    .slider-container .rc-slider-handle {
+        width: 12px !important; /* Reducir el tamaño del control deslizante */
+        height: 12px !important; /* Reducir la altura del control deslizante */
+    }
+
+    /* Asegurarse de que las cajas no se desborden */
+    .box {
+        max-width: 100% !important; /* Evitar que las cajas se agranden más allá del ancho de la pantalla */
+        transform: none !important; /* Deshabilitar el agrandamiento en pantallas pequeñas */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Reducir sombra en pantallas pequeñas */
+    }
+
+    /* Asegurarse de que el efecto de agrandamiento no cause desbordamiento */
+    .box:hover {
+        transform: scale(1) !important; /* Desactivar el agrandamiento en pantallas pequeñas */
+    }
+}
+
+/* ==============================
+   Ajustes para RangeSlider en pantallas grandes
+   ============================== */
+@media (max-width: 1024px) {
+    .box {
+        max-width: 95% !important; /* Limitar el tamaño máximo para que las cajas no se desborden */
+        transform: none !important; /* Desactivar el agrandamiento */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Ajustar sombra */
+    }
+      /* Asegurar que el valor más pequeño del slider se alinee al inicio */
+      .slider-container .rc-slider .rc-slider-mark-text:first-child {
+        margin-left: 0 !important; /* Eliminar margen izquierdo que puede estar desplazando el primer valor */
+    }
+
+    /* Asegurar que las marcas y el texto estén alineados correctamente */
+    .slider-container .rc-slider-mark {
+        margin-left: 0 !important; /* Ajustar la posición de todas las marcas */
+    }
+}
+/* ==============================
+   Ajustes para RangeSlider en pantallas grandes
+   ============================== */
+   @media (min-width: 768px) {
+    /* Asegurar que el valor más pequeño del slider se alinee al inicio */
+    .slider-container .rc-slider .rc-slider-mark-text:first-child {
+        margin-left: 0 !important; /* Eliminar margen izquierdo que puede estar desplazando el primer valor */
+    }
+
+    /* Asegurar que las marcas y el texto estén alineados correctamente */
+    .slider-container .rc-slider-mark {
+        margin-left: 0 !important; /* Ajustar la posición de todas las marcas */
     }
 }

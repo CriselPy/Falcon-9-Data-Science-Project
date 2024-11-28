@@ -144,19 +144,43 @@ app.layout = html.Div([
 )
 def update_pie_chart(selected_site):
     if selected_site == 'ALL':
+        # Mapeo de la clase para mostrar 'Satisfactory' y 'Failed' en lugar de 1 y 0
+        spacex_df['Launch Outcome'] = spacex_df['class'].map({0: 'Failed', 1: 'Satisfactory'})
+        
         fig = px.pie(
             spacex_df,
-            values='class',
-            names='Launch Site',
-            title='Total Success Launches by Site'
+            names='Launch Outcome',  # Usar la nueva columna con las etiquetas
+            title='Total Success Launches by Site',
+            color='Launch Outcome',  # Usar colores personalizados según la clase
+            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Asignar colores personalizados
+            hole=0.3  # Para un gráfico de dona (puedes ajustar a 0 para pie clásico)
         )
     else:
         filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
+        # Mapeo de la clase para mostrar 'Satisfactory' y 'Failed' en lugar de 1 y 0
+        filtered_df['Launch Outcome'] = filtered_df['class'].map({0: 'Failed', 1: 'Satisfactory'})
+        
         fig = px.pie(
             filtered_df,
-            names='class',
-            title=f'Total Success Launches for site {selected_site}'
+            names='Launch Outcome',  # Usar la nueva columna con las etiquetas
+            title=f'Total Success Launches for site {selected_site}',
+            color='Launch Outcome',  # Usar colores personalizados según la clase
+            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Asignar colores personalizados
+            hole=0.3  # Para un gráfico de dona
         )
+    
+    # Personalización adicional: ajustar la fuente y el tamaño del título
+    fig.update_layout(
+        title_font=dict(family="Arial, sans-serif", size=24, color='black'),  # Cambiar la fuente y tamaño del título
+        legend_title=dict(font=dict(size=20)),  # Cambiar el tamaño de la leyenda
+        legend=dict(
+            orientation="h",  # Colocar la leyenda en horizontal
+            x=0.5,  # Centrar la leyenda
+            xanchor="center"
+        ),
+        margin=dict(t=70, b=40, l=40, r=40)  # Ajustar los márgenes
+    )
+    
     return fig
 
 
@@ -197,18 +221,26 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     distance = R * c
     return distance
 
-# Callback para actualizar el mapa de Folium
 @app.callback(
     Output('map', 'children'),
     [Input('site-dropdown', 'value')]
 )
 def update_map(selected_site):
-    # Determinar el centro del mapa dependiendo del sitio seleccionado
+    # Verificar si selected_site es válido
+    print(f"Selected site: {selected_site}")
+    
+    # Si se selecciona 'ALL', usar el centro predeterminado
     if selected_site == 'ALL':
         center = [29.559684, -95.083097]
     else:
         site_data = launch_sites_df[launch_sites_df['Launch Site'] == selected_site]
-        center = [site_data['Lat'].iloc[0], site_data['Long'].iloc[0]]
+        
+        # Verificar si site_data no está vacío
+        if not site_data.empty:
+            center = [site_data['Lat'].iloc[0], site_data['Long'].iloc[0]]
+        else:
+            # En caso de que el sitio seleccionado no esté en el DataFrame, usar coordenadas por defecto
+            center = [29.559684, -95.083097]  # Puedes cambiar este valor según tus necesidades
 
     folium_map = folium.Map(location=center, zoom_start=10)
     marker_cluster = MarkerCluster().add_to(folium_map)
@@ -269,7 +301,6 @@ def update_map(selected_site):
         height='600px'
     )
 
-
-# Correr el servidor
+# Correr el servidor (solo en producción con gunicorn)
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False, use_reloader=False, host='0.0.0.0')
