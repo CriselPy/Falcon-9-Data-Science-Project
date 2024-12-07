@@ -8,7 +8,7 @@ import io
 from folium.features import DivIcon
 
 # Cargar el dataset de SpaceX
-spacex_df = pd.read_csv('/Interactive Visual Analytics and Dashboard/spacex_launch_geo.csv')
+spacex_df = pd.read_csv('Interactive Visual Analytics and Dashboard/spacex_launch_geo.csv')
 
 # Asegurarse de que las fechas están correctamente formateadas
 spacex_df['Date'] = pd.to_datetime(spacex_df['Date'], format='%d-%m-%Y', errors='coerce')
