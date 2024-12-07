@@ -1,0 +1,8 @@
+dash
+dash-core-components
+dash-html-components
+dash-bootstrap-components
+plotly
+pandas
+folium
+gunicorn  # Necesario para servir la app en producción

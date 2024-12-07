@@ -1,0 +1,242 @@
+/* ==============================
+   ESTILO GENERAL
+   ============================== */
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif; /* Fuente general */
+    background-color: #1b1919; /* Fondo oscuro */
+    margin: 0; /* Eliminar márgenes */
+    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+}
+
+/* ==============================
+   SECCIÓN PRINCIPAL (CUBIERTA)
+   ============================== */
+
+/* Sección principal que cubre toda la pantalla */
+#cover-section {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* Altura del 70% del viewport */
+    display: flex; /* Alinear elementos hijos */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    overflow: hidden; /* Ocultar contenido que se desborda */
+}
+
+/* Estilo para el video de fondo */
+#video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar el video sin distorsión */
+}
+
+/* Contenido central sobre el fondo */
+.cover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar */
+    text-align: center; /* Centrar texto */
+    color: white; /* Texto blanco */
+    font-size: 3rem; /* Tamaño de fuente grande */
+    z-index: 10; /* Por encima del video */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+}
+
+/* ==============================
+   ESTILOS DE SELECTOR (Dropdown)
+   ============================== */
+
+/* Contenedor del selector */
+.selector-container {
+    position: relative !important; /* Priorizar posición */
+    z-index: 9999 !important; /* Por encima de otros elementos */
+}
+
+/* Asegurar que el menú desplegable se muestre sobre otros elementos */
+.selector-container .Select-menu-outer {
+    z-index: 10000 !important; /* Nivel superior */
+}
+
+/* Estilo general del selector */
+.selector-container .Select-control {
+    border: 2px solid #333 !important; /* Borde del selector */
+    border-radius: 8px !important; /* Bordes redondeados */
+    padding: 10px !important; /* Espaciado interno */
+    background-color: #f7f1f1 !important; /* Fondo claro */
+    color: rgb(4, 4, 4) !important; /* Texto negro */
+    box-shadow: none !important; /* Sin sombra por defecto */
+    transition: box-shadow 0.3s ease-in-out !important; /* Animación al enfocar */
+}
+
+/* Cambiar el color del menú desplegable al pasar el cursor */
+.selector-container .Select-menu-outer:hover {
+    border-color: orange !important; /* Borde naranja */
+    background-color: #fcfbf8 !important; /* Fondo */
+}
+
+/* Estilo para el título del slider */
+.slider-container p {
+    color: white !important; /* Color blanco */
+    font-weight: bold !important; /* Negritas */
+    font-size: 1.5rem !important; /* Tamaño más grande (ajústalo según tu preferencia) */
+    margin-bottom: 10px; /* Espaciado debajo del título */
+}
+
+/* ==============================
+   CONTENEDORES DE GRÁFICOS Y MAPAS
+   ============================== */
+
+/* Contenedores para gráficos y mapas */
+.graph-box, .map-box {
+    position: relative; /* Posición relativa para efectos */
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente oscuro */
+    padding: 20px; /* Espaciado interno */
+    margin-bottom: 30px; /* Espaciado externo inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animaciones */
+    overflow: hidden; /* Ocultar contenido desbordante */
+    width: 90%; /* Ancho adaptable */
+    max-width: 1000px; /* Ancho máximo */
+    z-index: 1; /* Por debajo de dropdowns */
+}
+
+/* Efecto de hover para las cajas */
+.graph-box:hover, .map-box:hover {
+    transform: scale(1.05); /* Aumentar tamaño */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.8); /* Sombra más intensa */
+}
+
+/* Estilos específicos para mapas */
+.map-box {
+    height: 600px; /* Altura fija */
+}
+.map-box iframe {
+    border: none; /* Sin borde */
+    border-radius: 15px; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+}
+
+/* ==============================
+   CAJAS GENÉRICAS
+   ============================== */
+
+/* Estilo general para cajas */
+.box {
+    padding: 15px; /* Espaciado interno */
+    background: rgba(42, 40, 40, 0.915); /* Fondo oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animaciones */
+    max-width: 1250px; /* Ancho máximo */
+    margin: auto; /* Centrar */
+}
+
+/* Efecto hover para cajas */
+.box:hover {
+    transform: scale(1.03); /* Aumentar tamaño */
+    box-shadow: 0 6px 10px rgba(241, 157, 39, 0.7); /* Sombra naranja */
+}
+
+/* ==============================
+   RESPONSIVIDAD (Pantallas pequeñas)
+   ============================== */
+@media (max-width: 768px) {
+    .cover-content {
+        font-size: 2rem; /* Reducir tamaño de fuente */
+        padding: 15px; /* Ajustar espaciado */
+    }
+
+    #controls-container .dcc-dropdown, #controls-container .dcc-range-slider {
+        max-width: 90%; /* Ajustar ancho máximo */
+    }
+
+    iframe {
+        height: 400px; /* Reducir altura */
+    }
+
+    .graph-box, .map-box {
+        transform: none; /* Deshabilitar zoom */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Reducir sombra */
+    }
+
+    .map-box {
+        height: 400px; /* Altura más pequeña */
+    }
+
+    /* Ajustes para RangeSlider en pantallas pequeñas */
+    .slider-container .rc-slider-mark-text {
+        font-size: 8px !important;  /* Reducir tamaño de la fuente */
+        white-space: nowrap !important; /* Prevenir que los números se partan en varias líneas */
+        margin-top: 5px !important; /* Ajustar el espacio entre las marcas y el slider */
+    }
+
+    .slider-container .rc-slider-mark {
+        margin-left: 15px !important; /* Separación horizontal mayor entre marcas */
+        margin-right: 15px !important; /* Separación horizontal mayor entre marcas */
+    }
+
+    .slider-container .rc-slider {
+        margin-bottom: 20px !important; /* Añadir espacio por debajo */
+    }
+
+    .slider-container .rc-slider-handle {
+        width: 12px !important; /* Reducir el tamaño del control deslizante */
+        height: 12px !important; /* Reducir la altura del control deslizante */
+    }
+
+    /* Asegurarse de que las cajas no se desborden */
+    .box {
+        max-width: 100% !important; /* Evitar que las cajas se agranden más allá del ancho de la pantalla */
+        transform: none !important; /* Deshabilitar el agrandamiento en pantallas pequeñas */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Reducir sombra en pantallas pequeñas */
+    }
+
+    /* Asegurarse de que el efecto de agrandamiento no cause desbordamiento */
+    .box:hover {
+        transform: scale(1) !important; /* Desactivar el agrandamiento en pantallas pequeñas */
+    }
+}
+
+/* ==============================
+   Ajustes para RangeSlider en pantallas grandes
+   ============================== */
+@media (max-width: 1024px) {
+    .box {
+        max-width: 95% !important; /* Limitar el tamaño máximo para que las cajas no se desborden */
+        transform: none !important; /* Desactivar el agrandamiento */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Ajustar sombra */
+    }
+      /* Asegurar que el valor más pequeño del slider se alinee al inicio */
+      .slider-container .rc-slider .rc-slider-mark-text:first-child {
+        margin-left: 0 !important; /* Eliminar margen izquierdo que puede estar desplazando el primer valor */
+    }
+
+    /* Asegurar que las marcas y el texto estén alineados correctamente */
+    .slider-container .rc-slider-mark {
+        margin-left: 0 !important; /* Ajustar la posición de todas las marcas */
+    }
+}
+/* ==============================
+   Ajustes para RangeSlider en pantallas grandes
+   ============================== */
+   @media (min-width: 768px) {
+    /* Asegurar que el valor más pequeño del slider se alinee al inicio */
+    .slider-container .rc-slider .rc-slider-mark-text:first-child {
+        margin-left: 0 !important; /* Eliminar margen izquierdo que puede estar desplazando el primer valor */
+    }
+
+    /* Asegurar que las marcas y el texto estén alineados correctamente */
+    .slider-container .rc-slider-mark {
+        margin-left: 0 !important; /* Ajustar la posición de todas las marcas */
+    }
+}
