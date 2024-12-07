@@ -78,8 +78,8 @@ app.layout = html.Div([
                         children=[
                             dcc.Dropdown(
                                 id='site-dropdown',
-                                options=[{'label': site, 'value': site} for site in spacex_df['Launch Site'].unique()] +
-                                         [{'label': 'All Sites', 'value': 'ALL'}],
+                                options=[{'label': 'All Sites', 'value': 'ALL'}] +
+                                        [{'label': site, 'value': site} for site in spacex_df['Launch Site'].unique()],
                                 value='ALL',
                                 placeholder='Select a Launch Site',
                                 searchable=True,
@@ -143,31 +143,46 @@ app.layout = html.Div([
     [Input('site-dropdown', 'value')]
 )
 def update_pie_chart(selected_site):
+    # Crear una copia del DataFrame para evitar modificar el original
+    df_copy = spacex_df.copy()
+    
+    # Mapear la clase para mostrar etiquetas más descriptivas
+    df_copy['Launch Outcome'] = df_copy['class'].map({0: 'Failed', 1: 'Satisfactory'})
+
+    # Si se selecciona "ALL", usar todos los datos
     if selected_site == 'ALL':
-        # Mapeo de la clase para mostrar 'Satisfactory' y 'Failed' en lugar de 1 y 0
-        spacex_df['Launch Outcome'] = spacex_df['class'].map({0: 'Failed', 1: 'Satisfactory'})
-        
         fig = px.pie(
-            spacex_df,
-            names='Launch Outcome',  # Usar la nueva columna con las etiquetas
+            df_copy,
+            names='Launch Outcome',  # Usar la nueva columna mapeada
             title='Total Success Launches by Site',
-            color='Launch Outcome',  # Usar colores personalizados según la clase
-            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Asignar colores personalizados
-            hole=0.3  # Para un gráfico de dona (puedes ajustar a 0 para pie clásico)
+            color='Launch Outcome',  # Usar colores personalizados
+            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Mapeo de colores
+            hole=0.3  # Gráfico de dona
         )
     else:
-        filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
-        # Mapeo de la clase para mostrar 'Satisfactory' y 'Failed' en lugar de 1 y 0
-        filtered_df['Launch Outcome'] = filtered_df['class'].map({0: 'Failed', 1: 'Satisfactory'})
+        # Filtrar el DataFrame para el sitio seleccionado
+        filtered_df = df_copy[df_copy['Launch Site'] == selected_site]
         
+        # Manejar el caso en que no haya datos para el sitio seleccionado
+        if filtered_df.empty:
+            return px.pie(
+                names=['No Data'],  # Etiqueta cuando no hay datos
+                values=[1],  # Valor arbitrario para mostrar un gráfico vacío
+                title=f'No launches found for site {selected_site}'
+            )
+        
+        # Crear el gráfico de dona para el sitio filtrado
         fig = px.pie(
             filtered_df,
-            names='Launch Outcome',  # Usar la nueva columna con las etiquetas
+            names='Launch Outcome',
             title=f'Total Success Launches for site {selected_site}',
-            color='Launch Outcome',  # Usar colores personalizados según la clase
-            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Asignar colores personalizados
-            hole=0.3  # Para un gráfico de dona
+            color='Launch Outcome',
+            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},
+            hole=0.3
         )
+
+    return fig
+
     
     # Personalización adicional: ajustar la fuente y el tamaño del título
     fig.update_layout(
