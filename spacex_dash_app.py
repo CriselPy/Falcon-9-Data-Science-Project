@@ -316,6 +316,6 @@ def update_map(selected_site):
         height='600px'
     )
 
-# Correr el servidor (solo en producción con gunicorn)
-if __name__ == '__main__':
-    app.run_server(debug=False, use_reloader=False, host='0.0.0.0')
+# Correr el servidor 
+if __name__ == "__main__":
+    app.run_server(debug=False)  # Render se encarga del servidor en producción
