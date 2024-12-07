@@ -5,4 +5,3 @@ dash-bootstrap-components
 plotly
 pandas
 folium
-gunicorn 
