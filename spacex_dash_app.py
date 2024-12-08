@@ -152,13 +152,14 @@ def update_pie_chart(selected_site):
 
     # Si se selecciona "ALL", usar todos los datos
     if selected_site == 'ALL':
+        # Mostrar distribución de Launch Outcome sin filtrar por sitio de lanzamiento
         fig = px.pie(
             df_copy,
-            names='Launch Outcome',  # Usar la nueva columna mapeada
-            title='Total Success Launches by Site',
-            color='Launch Outcome',  # Usar colores personalizados
-            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},  # Mapeo de colores
-            hole=0.3  # Gráfico de dona
+            names='Launch Outcome',  # Usar la columna "Launch Outcome" mapeada
+            title='Total Launches Outcome (All Sites)',  # Título ajustado
+            color='Launch Outcome',
+            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},
+            hole=0.3
         )
     else:
         # Filtrar el DataFrame para el sitio seleccionado
@@ -176,15 +177,27 @@ def update_pie_chart(selected_site):
         fig = px.pie(
             filtered_df,
             names='Launch Outcome',
-            title=f'Total Success Launches for site {selected_site}',
+            title=f'Successful Launches for {selected_site}',
             color='Launch Outcome',
             color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},
             hole=0.3
         )
 
+    # Personalización adicional: ajustar la fuente y el tamaño del título
+    fig.update_layout(
+        title_font=dict(family="Arial, sans-serif", size=24, color='black'),  # Cambiar la fuente y tamaño del título
+        legend_title=dict(font=dict(size=20)),  # Cambiar el tamaño de la leyenda
+        legend=dict(
+            orientation="h",  # Colocar la leyenda en horizontal
+            x=0.5,  # Centrar la leyenda
+            xanchor="center"
+        ),
+        margin=dict(t=70, b=40, l=40, r=40)  # Ajustar los márgenes
+    )
+    
     return fig
 
-    
+
     # Personalización adicional: ajustar la fuente y el tamaño del título
     fig.update_layout(
         title_font=dict(family="Arial, sans-serif", size=24, color='black'),  # Cambiar la fuente y tamaño del título
