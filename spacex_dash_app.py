@@ -144,57 +144,37 @@ app.layout = html.Div([
     [Input('site-dropdown', 'value')]
 )
 def update_pie_chart(selected_site):
-    # Crear una copia del DataFrame para evitar modificar el original
-    df_copy = spacex_df.copy()
-    
-    # Mapear la clase para mostrar etiquetas más descriptivas
-    df_copy['Launch Outcome'] = df_copy['class'].map({0: 'Failed', 1: 'Satisfactory'})
-
-    # Si se selecciona "ALL", usar todos los datos
+    # Si se selecciona "ALL", contamos los lanzamientos exitosos y fallidos en todo el DataFrame
     if selected_site == 'ALL':
-        # Mostrar distribución de Launch Outcome sin filtrar por sitio de lanzamiento
+        launch_outcomes = spacex_df['class'].value_counts()
         fig = px.pie(
-            df_copy,
-            names='Launch Outcome',  # Usar la columna "Launch Outcome" mapeada
-            title='Total Launches Outcome (All Sites)',  # Título ajustado
-            color='Launch Outcome',
-            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},
+            names=launch_outcomes.index,
+            values=launch_outcomes.values,
+            title='Total Success Launches Across All Sites',
+            color=launch_outcomes.index,
+            color_discrete_map={0: 'red', 1: 'green'},  # 0 para fallido, 1 para exitoso
             hole=0.3
         )
     else:
-        # Filtrar el DataFrame para el sitio seleccionado
-        filtered_df = df_copy[df_copy['Launch Site'] == selected_site]
-        
-        # Manejar el caso en que no haya datos para el sitio seleccionado
+        # Si se selecciona un sitio específico, filtrar por ese sitio y contar los lanzamientos exitosos y fallidos
+        filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
         if filtered_df.empty:
             return px.pie(
-                names=['No Data'],  # Etiqueta cuando no hay datos
-                values=[1],  # Valor arbitrario para mostrar un gráfico vacío
+                names=['No Data'],
+                values=[1],
                 title=f'No launches found for site {selected_site}'
             )
-        
-        # Crear el gráfico de dona para el sitio filtrado
+
+        launch_outcomes = filtered_df['class'].value_counts()
         fig = px.pie(
-            filtered_df,
-            names='Launch Outcome',
-            title=f'Successful Launches for {selected_site}',
-            color='Launch Outcome',
-            color_discrete_map={'Satisfactory': 'green', 'Failed': 'red'},
+            names=launch_outcomes.index,
+            values=launch_outcomes.values,
+            title=f'Success Launches for Site {selected_site}',
+            color=launch_outcomes.index,
+            color_discrete_map={0: 'red', 1: 'green'},
             hole=0.3
         )
 
-    # Personalización adicional: ajustar la fuente y el tamaño del título
-    fig.update_layout(
-        title_font=dict(family="Arial, sans-serif", size=24, color='black'),  # Cambiar la fuente y tamaño del título
-        legend_title=dict(font=dict(size=20)),  # Cambiar el tamaño de la leyenda
-        legend=dict(
-            orientation="h",  # Colocar la leyenda en horizontal
-            x=0.5,  # Centrar la leyenda
-            xanchor="center"
-        ),
-        margin=dict(t=70, b=40, l=40, r=40)  # Ajustar los márgenes
-    )
-    
     return fig
 
 
