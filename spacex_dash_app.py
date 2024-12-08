@@ -139,25 +139,31 @@ app.layout = html.Div([
 ])
 
 # Callback para actualizar el gráfico de pie
+# Callback para actualizar el gráfico de pie
 @app.callback(
     Output('success-pie-chart', 'figure'),
     [Input('site-dropdown', 'value')]
 )
 def update_pie_chart(selected_site):
-    # Si se selecciona "ALL", contamos los lanzamientos exitosos y fallidos en todo el DataFrame
+    # Si se selecciona "ALL", utilizamos todas las filas en el DataFrame
     if selected_site == 'ALL':
+        # Contamos los lanzamientos exitosos y fallidos en todo el DataFrame
         launch_outcomes = spacex_df['class'].value_counts()
+
+        # Creamos el gráfico de pastel con el conteo de lanzamientos exitosos y fallidos
         fig = px.pie(
             names=launch_outcomes.index,
             values=launch_outcomes.values,
-            title='Total Success Launches Across All Sites',
+            title='Total Success Launches Across All Sites',  # Título general
             color=launch_outcomes.index,
             color_discrete_map={0: 'red', 1: 'green'},  # 0 para fallido, 1 para exitoso
-            hole=0.3
+            hole=0.3  # Hacer un gráfico de dona
         )
     else:
-        # Si se selecciona un sitio específico, filtrar por ese sitio y contar los lanzamientos exitosos y fallidos
+        # Si se selecciona un sitio específico, filtramos por ese sitio
         filtered_df = spacex_df[spacex_df['Launch Site'] == selected_site]
+
+        # Verificamos si hay datos para el sitio seleccionado
         if filtered_df.empty:
             return px.pie(
                 names=['No Data'],
@@ -165,17 +171,21 @@ def update_pie_chart(selected_site):
                 title=f'No launches found for site {selected_site}'
             )
 
+        # Contamos los lanzamientos exitosos y fallidos para el sitio seleccionado
         launch_outcomes = filtered_df['class'].value_counts()
+
+        # Creamos el gráfico de pastel para el sitio específico
         fig = px.pie(
             names=launch_outcomes.index,
             values=launch_outcomes.values,
-            title=f'Success Launches for Site {selected_site}',
+            title=f'Success Launches for Site {selected_site}',  # Título con el nombre del sitio
             color=launch_outcomes.index,
             color_discrete_map={0: 'red', 1: 'green'},
             hole=0.3
         )
 
     return fig
+
 
 
     # Personalización adicional: ajustar la fuente y el tamaño del título
