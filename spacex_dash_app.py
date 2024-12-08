@@ -6,6 +6,7 @@ from folium.plugins import MarkerCluster
 from math import sin, cos, sqrt, atan2, radians
 import io
 from folium.features import DivIcon
+import os
 
 # Cargar el dataset de SpaceX
 spacex_df = pd.read_csv('Interactive Visual Analytics and Dashboard/spacex_launch_geo.csv')
