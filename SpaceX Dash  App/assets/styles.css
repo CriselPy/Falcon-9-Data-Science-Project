@@ -1,0 +1,264 @@
+/* ==============================
+   GENERAL STYLES
+   ============================== */
+
+/* General body style */
+body {
+    font-family: Arial, sans-serif; /* General font */
+    background-color: #100f0f; /* Dark background */
+    margin: 0; /* Remove margins */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* ==============================
+   MAIN SECTION (COVER)
+   ============================== */
+
+/* Main section covering the whole screen */
+#cover-section {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* 70% of the viewport height */
+    display: flex; /* Align child elements */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Hide overflow content */
+}
+
+/* Background video styling */
+#video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the video without distortion */
+}
+
+/* Central content on top of the background */
+.cover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the content */
+    text-align: center; /* Center text */
+    color: white; /* White text */
+    font-size: 3rem; /* Large font size */
+    z-index: 10; /* Above the video */
+    padding: 20px; /* Padding */
+    border-radius: 10px; /* Rounded corners */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+}
+
+/* ==============================
+   SELECTOR (Dropdown) STYLES
+   ============================== */
+
+/* Dropdown container */
+.selector-container {
+    position: relative !important; /* Prioritize position */
+    z-index: 9999 !important; /* Above other elements */
+}
+
+/* Ensure dropdown menu is on top */
+.selector-container .Select-menu-outer {
+    z-index: 10000 !important; /* Top level */
+}
+
+/* General dropdown styling */
+.selector-container .Select-control {
+    border: 2px solid #333 !important; /* Border color */
+    border-radius: 8px !important; /* Rounded corners */
+    padding: 10px !important; /* Internal padding */
+    background-color: #f7f1f1 !important; /* Light background */
+    color: rgb(4, 4, 4) !important; /* Black text */
+    box-shadow: none !important; /* No default shadow */
+    transition: box-shadow 0.3s ease-in-out !important; /* Focus animation */
+}
+
+/* Hover effect on dropdown */
+.selector-container .Select-menu-outer:hover {
+    border-color: orange !important; /* Orange border */
+    background-color: #fcfbf8 !important; /* Background */
+}
+
+/* Styling for the slider title */
+.slider-container p {
+    color: white !important; /* White text */
+    font-weight: bold !important; /* Bold font */
+    font-size: 1.5rem !important; /* Larger font size */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* ==============================
+   GRAPH CONTAINER STYLES
+   ============================== */
+
+/* Containers for graphs */
+.graph-box {
+    position: relative; /* Relative positioning for effects */
+    border-radius: 15px; /* Rounded corners */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+    padding: 20px; /* Padding */
+    margin-bottom: 30px; /* Bottom margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation effects */
+    overflow: hidden; /* Hide overflow content */
+    width: 90%; /* Adaptable width */
+    max-width: 1000px; /* Max width */
+    z-index: 1; /* Below dropdowns */
+}
+
+/* Hover effect for graph containers */
+.graph-box:hover {
+    transform: scale(1.05); /* Increase size */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.8); /* Stronger shadow */
+}
+
+/* ==============================
+   GENERIC BOX STYLES
+   ============================== */
+
+/* General box styling */
+.box {
+    padding: 15px; /* Internal padding */
+    background: rgba(42, 40, 40, 0.915); /* Dark background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9); /* Shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animation effects */
+    max-width: 1250px; /* Max width */
+    margin: auto; /* Center content */
+}
+
+/* Hover effect for boxes */
+.box:hover {
+    transform: scale(1.03); /* Slight zoom */
+    box-shadow: 0 6px 10px rgba(241, 157, 39, 0.7); /* Orange shadow */
+}
+
+/* ==============================
+   RESPONSIVENESS (Small screens)
+   ============================== */
+@media (max-width: 768px) {
+    .cover-content {
+        font-size: 2rem; /* Smaller font size */
+        padding: 15px; /* Adjust padding */
+    }
+
+    #controls-container .dcc-dropdown, #controls-container .dcc-range-slider {
+        max-width: 90%; /* Adjust max width */
+    }
+
+
+    .graph-box {
+        transform: none; /* Disable zoom */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Lighter shadow */
+    }
+
+    .graph-box {
+        height: 400px; /* Smaller height for graphs */
+    }
+
+    /* Adjustments for RangeSlider on small screens */
+    .slider-container .rc-slider-mark-text {
+        font-size: 8px !important;  /* Smaller font size */
+        white-space: nowrap !important; /* Prevent wrapping text */
+        margin-top: 5px !important; /* Adjust space between marks and slider */
+    }
+
+    .slider-container .rc-slider-mark {
+        margin-left: 15px !important; /* Greater space between marks */
+        margin-right: 15px !important; /* Greater space between marks */
+    }
+
+    .slider-container .rc-slider {
+        margin-bottom: 20px !important; /* Add space below the slider */
+    }
+
+    .slider-container .rc-slider-handle {
+        width: 12px !important; /* Smaller handle size */
+        height: 12px !important; /* Smaller handle size */
+    }
+
+    /* Ensure boxes don't overflow */
+    .box {
+        max-width: 100% !important; /* Prevent overflow */
+        transform: none !important; /* Disable zoom on small screens */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Reduce shadow */
+    }
+
+    /* Disable scaling effect on hover on small screens */
+    .box:hover {
+        transform: scale(1) !important; /* Disable hover zoom */
+    }
+}
+
+/* ==============================
+   Adjustments for RangeSlider on larger screens
+   ============================== */
+@media (max-width: 1024px) {
+    .box {
+        max-width: 95% !important; /* Limit the size to avoid overflow */
+        transform: none !important; /* Disable zoom */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Adjust shadow */
+    }
+    
+    /* Ensure the smallest value of the slider aligns at the start */
+    .slider-container .rc-slider .rc-slider-mark-text:first-child {
+        margin-left: 0 !important; /* Remove left margin */
+    }
+
+    /* Align marks and text correctly */
+    .slider-container .rc-slider-mark {
+        margin-left: 0 !important; /* Adjust mark position */
+    }
+}
+
+/* ==============================
+   NEW SECTION: Q&A
+   ============================== */
+
+/* Styling for the Q&A section */
+.qa-container {
+    background-color: rgba(255, 255, 255, 0.915) !important; /* Dark background */
+    padding: 25px !important; /* Padding inside */
+    border-radius: 10px !important; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7) !important; /* Stronger shadow */
+    margin-top: 30px !important; /* Space above the section */
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s !important; /* Animation effects */
+}
+
+/* Hover effect for Q&A container */
+.qa-container:hover {
+    transform: scale(1.03) !important; /* Slight zoom */
+    box-shadow: 0 6px 10px rgba(241, 157, 39, 0.7) !important; /* Orange shadow on hover */
+    background-color: rgba(255, 255, 255, 0.915) !important; /* Same dark background */
+}
+
+/* Styling for each Q&A box */
+.qa-container div {
+    margin-bottom: 20px !important; /* Space between questions */
+    padding: 15px !important; /* Padding inside */
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Dark background */
+    border-radius: 8px !important; /* Rounded corners */
+    color: #f7f7f7 !important; /* Light text color */
+    transition: background-color 0.3s !important; /* Smooth color transition */
+}
+
+/* Hover effect for individual Q&A boxes */
+.qa-container div:hover {
+    background-color: rgba(0, 0, 0, 0.7) !important; /* Darker background on hover */
+}
+
+/* Styling for question text */
+.qa-container div p.question {
+    font-weight: bold !important; /* Bold for questions */
+    font-size: 1.2rem !important; /* Larger font size for questions */
+    margin-bottom: 10px !important; /* Space below questions */
+}
+
+/* Styling for answers */
+.qa-container div p.answer {
+    font-size: 1rem !important; /* Normal font size for answers */
+    color: #cccccc !important; /* Lighter color for answers */
+}
