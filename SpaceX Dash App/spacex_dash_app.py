@@ -1,7 +1,7 @@
 # Import required libraries
 import pandas as pd
 import dash
-import dash_html_components as html
+from dash import html
 from dash import dcc
 from dash.dependencies import Input, Output
 import plotly.express as px
@@ -9,7 +9,8 @@ import io
 import os
 
 # Load SpaceX dataset
-spacex_df = pd.read_csv('spacex_launch_dash.csv')
+spacex_df = pd.read_csv('C:/Users/cglor/Desktop/Applied Data Science Capstone/SpaceX Dash App/spacex_launch_dash.csv')
+
 
 max_payload = spacex_df['Payload Mass (kg)'].max()
 min_payload = spacex_df['Payload Mass (kg)'].min()
