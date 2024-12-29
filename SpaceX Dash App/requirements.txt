@@ -1,7 +1,11 @@
-dash
-dash-core-components
-dash-html-components
-dash-bootstrap-components
-plotly
+requests
 pandas
+numpy
+matplotlib
+seaborn
+beautifulsoup4
+scikit-learn
+dash
+plotly
 folium
+wget
