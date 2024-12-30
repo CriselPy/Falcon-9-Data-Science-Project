@@ -5,7 +5,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Cristina_Ortega-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/cristina-ortega-451750275/)
 [![GitHub](https://img.shields.io/badge/GitHub-CriselPy-pink?logo=github&style=flat-square)](https://github.com/CriselPy)
 [![GitHub stars](https://img.shields.io/github/stars/CriselPy/Falcon-9-Data-Science-Project?style=social&label=Stars)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/stargazers)
-[![Issues](https://img.shields.io/github/issues/CriselPy/King-County-Housing-Analysis?style=flat-square&color=673ab7)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/issues)
+
 # Falcon 9 Data Science Project
 
 Este proyecto predice si la primera etapa del Falcon 9 aterrizará con éxito utilizando datos de lanzamientos de SpaceX. El repositorio contiene varios notebooks de Jupyter que cubren la recolección de datos, el análisis exploratorio, la limpieza de datos y la visualización interactiva.
@@ -19,31 +19,33 @@ La aplicación Dash está desplegada en Render. Puedes acceder a ella en el sigu
 ## Estructura del Proyecto
 
 - **Collecting the Data**
-  - [`dataset_part_1.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_1.csv)
-  - [`jupyter-labs-spacex-data-collection-api-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-spacex-data-collection-api-v2.ipynb)
-  - [`jupyter-labs-webscraping.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-webscraping.ipynb)
-  - [`spacex_web_scraped.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/spacex_web_scraped.csv)
+  - [`dataset_part_1.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Collecting%20the%20Data/dataset_part_1.csv)
+  - [`jupyter-labs-spacex-data-collection-api-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Collecting%20the%20Data/jupyter-labs-spacex-data-collection-api-v2.ipynb)
+  - [`jupyter-labs-webscraping.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Collecting%20the%20Data/jupyter-labs-webscraping.ipynb)
+  - [`spacex_web_scraped.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Collecting%20the%20Data/spacex_web_scraped.csv)
 
 - **Data Wrangling**
-  - [`dataset_part_2.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_2.csv)
-  - [`labs-jupyter-spacex-Data wrangling-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/labs-jupyter-spacex-Data%20wrangling-v2.ipynb)
+  - [`dataset_part_2.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Data%20Wrangling/dataset_part_2.csv)
+  - [`labs-jupyter-spacex-Data wrangling-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Data%20Wrangling/labs-jupyter-spacex-Data%20wrangling-v2.ipynb)
 
 - **Exploratory Analysis Using Pandas and Matplotlib**
-  - [`dataset_part_3.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_3.csv)
-  - [`jupyter-labs-eda-dataviz-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-eda-dataviz-v2.ipynb)
+  - [`dataset_part_3.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Exploratory%20Analysis%20Using%20Pandas%20and%20Matplotlib/dataset_part_3.csv)
+  - [`jupyter-labs-eda-dataviz-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Exploratory%20Analysis%20Using%20Pandas%20and%20Matplotlib/jupyter-labs-eda-dataviz-v2.ipynb)
 
 - **Exploratory Analysis Using SQL**
-  - [`jupyter-labs-eda-sql-coursera_sqllite.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-eda-sql-coursera_sqllite.ipynb)
+  - [`jupyter-labs-eda-sql-coursera_sqllite.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Exploratory%20Analysis%20Using%20SQL/jupyter-labs-eda-sql-coursera_sqllite.ipynb)
 
 - **Interactive Visual Analytics and Dashboard**
-  - [`lab-jupyter-launch-site-location-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/lab-jupyter-launch-site-location-v2.ipynb)
+  - [`lab-jupyter-launch-site-location-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Interactive%20Visual%20Analytics%20and%20Dashboard/lab-jupyter-launch-site-location-v2.ipynb)
+  - [`spacex_launch_geo.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Interactive%20Visual%20Analytics%20and%20Dashboard/spacex_launch_geo.csv)
 
 - **Predictive Analysis (Classification)**
-  - [`SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb)
+  - [`SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Predictive%20Analysis%20(Classification)/SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb)
 
 - **SpaceX Dash App**
-  - [`spacex_dash_app.py`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/spacex_dash_app.py)
-  - [`requirements.txt`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/requirements.txt)
+  - [`spacex_dash_app.py`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_dash_app.py)
+  - [`spacex_launch_dash.csv]`(https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_launch_dash.csv)
+  - [`requirements.txt`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/requirements.txt)
 
 ## Requisitos
 
@@ -79,8 +81,8 @@ pip install -r SpaceX\ Dash\ App/requirements.txt
 
 Puedes previsualizar el PDF y la presentación, así como acceder a la aplicación Dash en los siguientes enlaces:
 
-- [Previsualizar PDF](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/ds-capstone-template-coursera.pdf)
-- [Previsualizar Presentación](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/ds-capstone-template-coursera.pptx)
+- [Previsualizar PDF](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pdf)
+- [download Presentación](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pptx)
 - [Acceder a la Aplicación Dash](https://spacex-launch-data.onrender.com/)
 
 ## Licencia
