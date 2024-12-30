@@ -9,7 +9,7 @@ import io
 import os
 
 # Load SpaceX dataset
-spacex_df = pd.read_csv('/SpaceX Dash App/spacex_launch_dash.csv')
+spacex_df = pd.read_csv('./spacex_launch_dash.csv')
 
 
 max_payload = spacex_df['Payload Mass (kg)'].max()
