@@ -11,35 +11,35 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/watchers)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/pulls)
 
-## Capturas de Pantalla
+## Screenshots
 
-![Dashboard](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/SpaceX%20Dash%20App/assets/dashboard.gif)
+![Dashboard](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/assets/dashboard.gif)
 
-## Tabla de Contenidos
+## Table of Contents
 - [Falcon 9 Data Science Project](#falcon-9-data-science-project)
-  - [Aplicación en Render](#aplicación-en-render)
-  - [Estructura del Proyecto](#estructura-del-proyecto)
-  - [Requisitos e Instalación:](#requisitos-e-instalación)
-  - [Uso](#uso)
-  - [Previsualización y Acceso](#previsualización-y-acceso)
-  - [Licencia](#licencia)
-  - [Autores](#autores)
+  - [Application on Render](#application-on-render)
+  - [Project Structure](#project-structure)
+  - [Requirements and Installation](#requirements-and-installation)
+  - [Usage](#usage)
+  - [Preview and Access](#preview-and-access)
+  - [License](#license)
+  - [Contact](#contact)
+  - [Contributions](#contributions)
+  - [Project Status](#project-status)
+  - [Authors](#authors)
 - [Crisel Nublo 🪻](#crisel-nublo-)
-  - [Contacto](#contacto)
-  - [Contribuciones](#contribuciones)
-  - [Estado del Proyecto](#estado-del-proyecto)
 
 # Falcon 9 Data Science Project
 
-Este proyecto predice si la primera etapa del Falcon 9 aterrizará con éxito utilizando datos de lanzamientos de SpaceX. El repositorio contiene varios notebooks de Jupyter que cubren la recolección de datos, el análisis exploratorio, la limpieza de datos y la visualización interactiva.
+This project predicts whether the first stage of the Falcon 9 will successfully land using SpaceX launch data. The repository contains several Jupyter notebooks covering data collection, exploratory analysis, data cleaning, and interactive visualization.
 
-## Aplicación en Render
+## Application on Render
 
-La aplicación Dash está desplegada en Render. Puedes acceder a ella en el siguiente enlace:
+The Dash application is deployed on Render. You can access it at the following link:
 
-[SpaceX Launch Dashboard en Render]([https://your-render-app-link](https://spacex-launch-data.onrender.com/))
+[SpaceX Launch Dashboard on Render](https://spacex-launch-data.onrender.com/)
 
-## Estructura del Proyecto
+## Project Structure
 
 - **Collecting the Data**
   - [`dataset_part_1.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/Collecting%20the%20Data/dataset_part_1.csv)
@@ -70,9 +70,9 @@ La aplicación Dash está desplegada en Render. Puedes acceder a ella en el sigu
   - [`spacex_launch_dash.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_launch_dash.csv)
   - [`requirements.txt`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/requirements.txt)
 
-## Requisitos e Instalación:
+## Requirements and Installation
 
-Para ejecutar los notebooks y la aplicación Dash, necesitas instalar las siguientes librerías:
+To run the notebooks and the Dash application, you need to install the following libraries:
 
 - requests
 - pandas
@@ -86,52 +86,52 @@ Para ejecutar los notebooks y la aplicación Dash, necesitas instalar las siguie
 - folium
 - wget
 
-Puedes instalar todas las dependencias utilizando el archivo `requirements.txt`:
+You can install all dependencies using the `requirements.txt` file:
 
-1. Clona el repositorio:
+1. Clone the repository:
     ```sh
     git clone https://github.com/CriselPy/Falcon-9-Data-Science-Project.git
     ```
-2. Navega al directorio del proyecto:
+2. Navigate to the project directory:
     ```sh
     cd Falcon-9-Data-Science-Project
     ```
-3. Instala las dependencias:
+3. Install the dependencies:
     ```sh
     pip install -r SpaceX\ Dash\ App/requirements.txt
     ```
 
-## Uso
+## Usage
 
-1. **Recolección de Datos**: Utiliza los notebooks en la carpeta `Collecting the Data` para recolectar datos de la API de SpaceX y realizar web scraping.
-2. **Limpieza de Datos**: Usa los notebooks en la carpeta `Data Wrangling` para limpiar y preparar los datos.
-3. **Análisis Exploratorio**: Los notebooks en `Exploratory Analysis Using Pandas and Matplotlib` y `Exploratory Analysis Using SQL` te ayudarán a realizar análisis exploratorios.
-4. **Visualización Interactiva**: Utiliza `Interactive Visual Analytics and Dashboard` para crear visualizaciones interactivas con Folium.
-5. **Predicción**: Usa los notebooks en `Predictive Analysis (Classification)` para construir modelos de predicción.
-6. **Aplicación Dash**: Ejecuta `spacex_dash_app.py` para iniciar la aplicación Dash y visualizar los resultados.
+1. **Data Collection**: Use the notebooks in the `Collecting the Data` folder to collect data from the SpaceX API and perform web scraping.
+2. **Data Cleaning**: Use the notebooks in the `Data Wrangling` folder to clean and prepare the data.
+3. **Exploratory Analysis**: The notebooks in `Exploratory Analysis Using Pandas and Matplotlib` and `Exploratory Analysis Using SQL` will help you perform exploratory analysis.
+4. **Interactive Visualization**: Use `Interactive Visual Analytics and Dashboard` to create interactive visualizations with Folium.
+5. **Prediction**: Use the notebooks in `Predictive Analysis (Classification)` to build prediction models.
+6. **Dash Application**: Run `spacex_dash_app.py` to start the Dash application and visualize the results.
 
-## Previsualización y Acceso
+## Preview and Access
 
-Puedes previsualizar el PDF y la presentación, así como acceder a la aplicación Dash en los siguientes enlaces:
+You can preview the PDF and presentation, as well as access the Dash application at the following links:
 
-- [Previsualizar PDF](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pdf)
-- [download Presentación](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pptx)
-- [Acceder a la Aplicación Dash](https://spacex-launch-data.onrender.com/)
+- [Preview PDF](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pdf)
+- [Download Presentation](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/ds-capstone-template-coursera.pptx)
+- [Access the Dash Application](https://spacex-launch-data.onrender.com/)
 
-## Licencia
+## License
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+This project is licensed under the MIT License. See the [LICENSE](http://_vscodecontentref_/0) file for more details.
 
-## Autores
+## Contact
+For questions, please contact Crisel Nublo 🪻 on [LinkedIn](https://www.linkedin.com/in/cristina-ortega-451750275/).
+
+## Contributions
+
+Contributions are welcome. Please open an issue or a pull request to discuss any changes you would like to make.
+
+## Project Status
+This project is currently completed.
+
+## Authors
 
 # Crisel Nublo 🪻
-
-## Contacto
-Para preguntas, por favor contacta a Crisel Nublo 🪻 en [LinkedIn](https://www.linkedin.com/in/cristina-ortega-451750275/).
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que te gustaría hacer.
-
-## Estado del Proyecto
-Este proyecto está actualmente terminado.
