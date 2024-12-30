@@ -120,7 +120,7 @@ You can preview the PDF and presentation, as well as access the Dash application
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](http://_vscodecontentref_/0) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/LICENSE) file for more details.
 
 ## Contact
 For questions, please contact Crisel Nublo 🪻 on [LinkedIn](https://www.linkedin.com/in/cristina-ortega-451750275/).
