@@ -6,7 +6,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-CriselPy-pink?logo=github&style=flat-square)](https://github.com/CriselPy)
 [![GitHub stars](https://img.shields.io/github/stars/CriselPy/King-County-Housing-Analysis?style=social&label=Stars)](https://github.com/CriselPy/King-County-Housing-Analysis/stargazers)
 [![Issues](https://img.shields.io/github/issues/CriselPy/King-County-Housing-Analysis?style=flat-square&color=673ab7)](https://github.com/CriselPy/King-County-Housing-Analysis/issues)
-# SpaceX Launch Data Analysis
+# Falcon 9 Data Science Project
 
 Este proyecto predice si la primera etapa del Falcon 9 aterrizará con éxito utilizando datos de lanzamientos de SpaceX. El repositorio contiene varios notebooks de Jupyter que cubren la recolección de datos, el análisis exploratorio, la limpieza de datos y la visualización interactiva.
 
@@ -65,9 +65,6 @@ Puedes instalar todas las dependencias utilizando el archivo `requirements.txt`:
 
 ```sh
 pip install -r SpaceX\ Dash\ App/requirements.txt
-
-
-
 
 ## Uso
 
