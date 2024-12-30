@@ -19,31 +19,31 @@ La aplicación Dash está desplegada en Render. Puedes acceder a ella en el sigu
 ## Estructura del Proyecto
 
 - **Collecting the Data**
-  - `dataset_part_1.csv`
-  - `jupyter-labs-spacex-data-collection-api-v2.ipynb`
-  - `jupyter-labs-webscraping.ipynb`
-  - `spacex_web_scraped.csv`
+  - [`dataset_part_1.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_1.csv)
+  - [`jupyter-labs-spacex-data-collection-api-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-spacex-data-collection-api-v2.ipynb)
+  - [`jupyter-labs-webscraping.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-webscraping.ipynb)
+  - [`spacex_web_scraped.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/spacex_web_scraped.csv)
 
 - **Data Wrangling**
-  - `dataset_part_2.csv`
-  - `labs-jupyter-spacex-Data wrangling-v2.ipynb`
+  - [`dataset_part_2.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_2.csv)
+  - [`labs-jupyter-spacex-Data wrangling-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/labs-jupyter-spacex-Data%20wrangling-v2.ipynb)
 
 - **Exploratory Analysis Using Pandas and Matplotlib**
-  - `dataset_part_3.csv`
-  - `jupyter-labs-eda-dataviz-v2.ipynb`
+  - [`dataset_part_3.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/dataset_part_3.csv)
+  - [`jupyter-labs-eda-dataviz-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-eda-dataviz-v2.ipynb)
 
 - **Exploratory Analysis Using SQL**
-  - `jupyter-labs-eda-sql-coursera_sqllite.ipynb`
+  - [`jupyter-labs-eda-sql-coursera_sqllite.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/jupyter-labs-eda-sql-coursera_sqllite.ipynb)
 
 - **Interactive Visual Analytics and Dashboard**
-  - `lab-jupyter-launch-site-location-v2.ipynb`
+  - [`lab-jupyter-launch-site-location-v2.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/lab-jupyter-launch-site-location-v2.ipynb)
 
 - **Predictive Analysis (Classification)**
-  - `SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb`
+  - [`SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX-Machine-Learning-Prediction-Part-5-v1.ipynb)
 
 - **SpaceX Dash App**
-  - `spacex_dash_app.py`
-  - `requirements.txt`
+  - [`spacex_dash_app.py`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/spacex_dash_app.py)
+  - [`requirements.txt`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/requirements.txt)
 
 ## Requisitos
 
@@ -74,6 +74,14 @@ pip install -r SpaceX\ Dash\ App/requirements.txt
 4. **Visualización Interactiva**: Utiliza `Interactive Visual Analytics and Dashboard` para crear visualizaciones interactivas con Folium.
 5. **Predicción**: Usa los notebooks en `Predictive Analysis (Classification)` para construir modelos de predicción.
 6. **Aplicación Dash**: Ejecuta `spacex_dash_app.py` para iniciar la aplicación Dash y visualizar los resultados.
+
+## Previsualización y Acceso
+
+Puedes previsualizar el PDF y la presentación, así como acceder a la aplicación Dash en los siguientes enlaces:
+
+- [Previsualizar PDF](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/ds-capstone-template-coursera.pdf)
+- [Previsualizar Presentación](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/ds-capstone-template-coursera.pptx)
+- [Acceder a la Aplicación Dash](https://spacex-launch-data.onrender.com/)
 
 ## Licencia
 
