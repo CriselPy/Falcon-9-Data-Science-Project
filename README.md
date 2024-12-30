@@ -5,6 +5,30 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Cristina_Ortega-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/cristina-ortega-451750275/)
 [![GitHub](https://img.shields.io/badge/GitHub-CriselPy-pink?logo=github&style=flat-square)](https://github.com/CriselPy)
 [![GitHub stars](https://img.shields.io/github/stars/CriselPy/Falcon-9-Data-Science-Project?style=social&label=Stars)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/stargazers)
+[![Build Status](https://github.com/CriselPy/Falcon-9-Data-Science-Project/actions/workflows/main.yml/badge.svg)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/actions)
+[![Dependencies](https://img.shields.io/librariesio/github/CriselPy/Falcon-9-Data-Science-Project)](https://libraries.io/github/CriselPy/Falcon-9-Data-Science-Project)
+[![Last Commit](https://img.shields.io/github/last-commit/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/issues)
+[![GitHub forks](https://img.shields.io/github/forks/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/network)
+[![GitHub watchers](https://img.shields.io/github/watchers/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/watchers)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/pulls)
+
+## Capturas de Pantalla
+![Dashboard](path/to/dashboard_screenshot.png) 
+
+## Tabla de Contenidos
+- [Falcon 9 Data Science Project](#falcon-9-data-science-project)
+  - [Aplicación en Render](#aplicación-en-render)
+  - [Estructura del Proyecto](#estructura-del-proyecto)
+  - [Requisitos](#requisitos)
+  - [Instalación](#instalación)
+  - [Uso](#uso)
+  - [Previsualización y Acceso](#previsualización-y-acceso)
+  - [Licencia](#licencia)
+  - [Autores](#autores)
+  - [Contacto](#contacto)
+  - [Contribuciones](#contribuciones)
+  - [Estado del Proyecto](#estado-del-proyecto)
 
 # Falcon 9 Data Science Project
 
@@ -68,6 +92,20 @@ Puedes instalar todas las dependencias utilizando el archivo `requirements.txt`:
 ```sh
 pip install -r SpaceX\ Dash\ App/requirements.txt
 ````
+## Instalación
+1. Clona el repositorio:
+    ```sh
+    git clone https://github.com/CriselPy/Falcon-9-Data-Science-Project.git
+    ```
+2. Navega al directorio del proyecto:
+    ```sh
+    cd Falcon-9-Data-Science-Project
+    ```
+3. Instala las dependencias:
+    ```sh
+    pip install -r SpaceX\ Dash\ App/requirements.txt
+    ```
+
 ## Uso
 
 1. **Recolección de Datos**: Utiliza los notebooks en la carpeta `Collecting the Data` para recolectar datos de la API de SpaceX y realizar web scraping.
@@ -93,6 +131,12 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 - Crisel Nublo 🪻
 
+## Contacto
+Para preguntas, por favor contacta a Crisel Nublo 🪻 en [LinkedIn](https://www.linkedin.com/in/cristina-ortega-451750275/).
+
 ## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que te gustaría hacer.
+
+## Estado del Proyecto
+Este proyecto está actualmente en desarrollo.
