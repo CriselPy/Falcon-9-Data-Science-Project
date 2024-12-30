@@ -13,7 +13,7 @@
 
 ## Capturas de Pantalla
 
-![Dashboard]([https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/SpaceX%20Dash%20App/assets/dashboard.gif](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/assets/dashboard.gif))
+![Dashboard](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/assets/dashboard.gif)
 
 ## Tabla de Contenidos
 - [Falcon 9 Data Science Project](#falcon-9-data-science-project)
