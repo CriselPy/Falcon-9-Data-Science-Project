@@ -5,8 +5,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Cristina_Ortega-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/cristina-ortega-451750275/)
 [![GitHub](https://img.shields.io/badge/GitHub-CriselPy-pink?logo=github&style=flat-square)](https://github.com/CriselPy)
 [![GitHub stars](https://img.shields.io/github/stars/CriselPy/Falcon-9-Data-Science-Project?style=social&label=Stars)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/stargazers)
-[![Build Status](https://github.com/CriselPy/Falcon-9-Data-Science-Project/actions/workflows/main.yml/badge.svg)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/actions)
-[![Dependencies](https://img.shields.io/librariesio/github/CriselPy/Falcon-9-Data-Science-Project)](https://libraries.io/github/CriselPy/Falcon-9-Data-Science-Project)
 [![Last Commit](https://img.shields.io/github/last-commit/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/commits/main)
 [![GitHub issues](https://img.shields.io/github/issues/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/issues)
 [![GitHub forks](https://img.shields.io/github/forks/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/network)
@@ -14,18 +12,19 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/CriselPy/Falcon-9-Data-Science-Project)](https://github.com/CriselPy/Falcon-9-Data-Science-Project/pulls)
 
 ## Capturas de Pantalla
-![Dashboard](path/to/dashboard_screenshot.png) 
+
+![Dashboard](https://github.com/CriselPy/Falcon-9-Data-Science-Project/tree/main/SpaceX%20Dash%20App/assets/dashboard.gif)
 
 ## Tabla de Contenidos
 - [Falcon 9 Data Science Project](#falcon-9-data-science-project)
   - [Aplicación en Render](#aplicación-en-render)
   - [Estructura del Proyecto](#estructura-del-proyecto)
-  - [Requisitos](#requisitos)
-  - [Instalación](#instalación)
+  - [Requisitos e Instalación:](#requisitos-e-instalación)
   - [Uso](#uso)
   - [Previsualización y Acceso](#previsualización-y-acceso)
   - [Licencia](#licencia)
   - [Autores](#autores)
+- [Crisel Nublo 🪻](#crisel-nublo-)
   - [Contacto](#contacto)
   - [Contribuciones](#contribuciones)
   - [Estado del Proyecto](#estado-del-proyecto)
@@ -68,10 +67,10 @@ La aplicación Dash está desplegada en Render. Puedes acceder a ella en el sigu
 
 - **SpaceX Dash App**
   - [`spacex_dash_app.py`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_dash_app.py)
-  - [`spacex_launch_dash.csv]`(https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_launch_dash.csv)
+  - [`spacex_launch_dash.csv`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/spacex_launch_dash.csv)
   - [`requirements.txt`](https://github.com/CriselPy/Falcon-9-Data-Science-Project/blob/main/SpaceX%20Dash%20App/requirements.txt)
 
-## Requisitos
+## Requisitos e Instalación:
 
 Para ejecutar los notebooks y la aplicación Dash, necesitas instalar las siguientes librerías:
 
@@ -89,10 +88,6 @@ Para ejecutar los notebooks y la aplicación Dash, necesitas instalar las siguie
 
 Puedes instalar todas las dependencias utilizando el archivo `requirements.txt`:
 
-```sh
-pip install -r SpaceX\ Dash\ App/requirements.txt
-````
-## Instalación
 1. Clona el repositorio:
     ```sh
     git clone https://github.com/CriselPy/Falcon-9-Data-Science-Project.git
@@ -129,7 +124,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENS
 
 ## Autores
 
-- Crisel Nublo 🪻
+# Crisel Nublo 🪻
 
 ## Contacto
 Para preguntas, por favor contacta a Crisel Nublo 🪻 en [LinkedIn](https://www.linkedin.com/in/cristina-ortega-451750275/).
@@ -139,4 +134,4 @@ Para preguntas, por favor contacta a Crisel Nublo 🪻 en [LinkedIn](https://www
 Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que te gustaría hacer.
 
 ## Estado del Proyecto
-Este proyecto está actualmente en desarrollo.
+Este proyecto está actualmente terminado.
